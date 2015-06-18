@@ -14,3 +14,10 @@ var elixir = require('laravel-elixir');
 elixir(function(mix) {
     mix.less('app.less');
 });
+
+elixir(function(mix) {
+    mix.scripts([
+        '../vendor/jquery/dist/jquery.js',
+        '../vendor/materialize/dist/js/materialize.js'
+    ], 'public/js/vendors.js');
+});
