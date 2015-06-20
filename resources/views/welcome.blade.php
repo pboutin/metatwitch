@@ -46,6 +46,8 @@
             <div class="content">
                 <div class="title">Laravel 5</div>
                 <div class="quote">{{ Inspiring::quote() }}</div>
+
+                <a href="{{ url('login') }}">Login with twitch</a>
             </div>
         </div>
     </body>
