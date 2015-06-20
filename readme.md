@@ -3,3 +3,29 @@
 ## MetaTwitch
 
 Don't forget to set the permissions on `/storage` and `/bootstrap/cache`
+
+
+Database
+--------
+
+Create a new database called: metatwitch
+
+Change you .env database config
+
+DB_HOST=localhost
+DB_DATABASE=metatwitch
+DB_USERNAME=yourUser
+DB_PASSWORD=yourPass
+
+
+Twitch Oauth Information
+------------------------
+
+Visit: http://www.twitch.tv/settings/connections
+
+
+Change you .env twitch config
+
+TWITCH_CLIENT_ID=yourTwitchOauthID
+TWITCH_CLIENT_SECRET=yourTwitchOauthSecret
+TWITCH_REDIRECT_URL=http://metatwitch.local.com/login
