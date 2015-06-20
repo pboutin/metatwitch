@@ -1,5 +1,7 @@
 <?php
 
+/** @var \Illuminate\Routing\Router $router */
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -11,6 +13,24 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+$router->get('/', [
+    'as' => 'index',
+    'uses' => 'HomeController@index'
+]);
+
+
+$router->get('/login', [
+    'as' => 'login',
+    'uses' => 'TwitchOauthController@login'
+]);
+
+$router->group(['middleware' => ['auth']], function() use ($router){
+
+    $router->get('/home', [
+        'as' => 'home',
+        'uses' => 'UserHomeController@home'
+    ]);
+
 });
+
+
