@@ -4,9 +4,19 @@
         <link rel="stylesheet" href="css/main.css"/>
     </head>
     <body>
-        <nav class="green darken-1" role="navigation">
-            <div class="nav-wrapper large-container">
-                <a href="#" class="brand-logo">MetaTwitch</a>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">
+                        <img alt="Brand" src="http://placecage.com/75/25">
+                    </a>
+                </div>
+                <div class="navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li class="navbar-text">Dalran</li>
+                        <li><a href="/login"><i class="fa fa-sign-out"></i> {{trans('master.logout')}}</a></li>
+                    </ul>
+                </div>
             </div>
         </nav>
 

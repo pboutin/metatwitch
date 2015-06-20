@@ -1,4 +1,18 @@
-@import url(http://fonts.googleapis.com/css?family=Gruppo);
+@import "variables.less";
+@import "../vendor/bootstrap/less/mixins.less";
+@import "../vendor/bootstrap/less/normalize.less";
+@import "../vendor/bootstrap/less/scaffolding.less";
+@import "../vendor/bootstrap/less/type.less";
+@import "../vendor/bootstrap/less/buttons.less";
+
+@import "../vendor/fontawesome/less/font-awesome.less";
+
+html, body {
+    margin: 0;
+    min-width: 100vw;
+    min-height: 100vh;
+    overflow: hidden;
+}
 
 video.background {
     z-index: -100;
@@ -10,6 +24,7 @@ video.background {
     min-height: 100vh;
     background-size: cover;
 }
+
 div.mask {
     z-index: -10;
     position: fixed;
@@ -18,8 +33,9 @@ div.mask {
     width: 100vw;
     height: 100vh;
     background-image: url('../image/mask.png');
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(43, 62, 80, 0.55);
 }
+
 h1 {
     font-family: 'Gruppo';
     color: #fdfdfd;
@@ -29,4 +45,24 @@ h1 {
     width: 900px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.btn-login, .btn-login:hover {
+    border: 2px solid #FDFDFD;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -225px;
+    margin-top: -70px;
+    width: 450px;
+    height: 140px;
+    line-height: 115px;
+    font-size: 38px;
+    font-family: 'Gruppo';
+    font-weight: bold;
+
+    .fa {
+        position: relative;
+        top: 6px;
+    }
 }
