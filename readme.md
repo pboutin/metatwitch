@@ -26,6 +26,6 @@ Visit: http://www.twitch.tv/settings/connections
 
 Change you .env twitch config
 
-    TWITCH_CLIENT_ID=yourTwitchOauthID
-    TWITCH_CLIENT_SECRET=yourTwitchOauthSecret
-    TWITCH_REDIRECT_URL=http://metatwitch.local.com/login
+    TWITCH_KEY=yourTwitchOauthID
+    TWITCH_SECRET=yourTwitchOauthSecret
+    TWITCH_REDIRECT_URI=http://metatwitch.local.com/login
