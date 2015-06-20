@@ -18,3 +18,7 @@ Route::get('/', function () {
 Route::get('login', function() {
     return View::make('login');
 });
+
+Route::get('dashboard', function() {
+    return View::make('dashboard');
+});
