@@ -22,3 +22,7 @@ Route::get('login', function() {
 Route::get('dashboard', function() {
     return View::make('dashboard');
 });
+
+Route::get('room', function() {
+    return View::make('room');
+});
