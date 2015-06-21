@@ -32,6 +32,7 @@ class TwitchApiWrapper
     {
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, self::BASE_TWITCH_API_URL . $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         $output = curl_exec($curl);
         curl_close($curl);
 
