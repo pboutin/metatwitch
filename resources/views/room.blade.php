@@ -22,7 +22,7 @@
             <div class="chat-wrapper">
                 <iframe frameborder="0"
                     scrolling="no"
-                    src="http://www.twitch.tv/inf4mc/chat"
+                    src="http://www.twitch.tv/{{Auth::user()->username}}/chat"
                     height="400"
                     width="100%">
                 </iframe>

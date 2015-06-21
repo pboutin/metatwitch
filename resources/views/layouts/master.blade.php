@@ -13,7 +13,12 @@
                 </div>
                 <div class="navbar-right">
                     <ul class="nav navbar-nav">
-                        <li class="navbar-text">Dalran</li>
+                        @if (Auth::user()->logo)
+                            <li class="navbar-avatar"><img src="{{Auth::user()->logo}}" alt="avatar"/></li>
+                        @endif
+                        <li class="navbar-text">
+                            {{trans('master.hello')}} {{Auth::user()->username}}
+                        </li>
                         <li><a href="{{ url('logout') }}"><i class="fa fa-sign-out"></i> {{trans('master.logout')}}</a></li>
                     </ul>
                 </div>
