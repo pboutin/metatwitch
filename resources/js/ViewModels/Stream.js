@@ -1,0 +1,3 @@
+window.StreamViewModel = function(rawStream) {
+
+};

@@ -2,6 +2,9 @@
 <html>
     <head>
         <link rel="stylesheet" href="css/main.css"/>
+
+        <script type="text/javascript" src="js/vendors.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-default">
@@ -28,8 +31,5 @@
         <div class="large-container">
             @yield('content')
         </div>
-
-        <script type="text/javascript" src="js/vendors.js"></script>
-        <script type="text/javascript" src="js/main.js"></script>
     </body>
 </html>

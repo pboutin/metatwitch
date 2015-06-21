@@ -19,7 +19,8 @@ elixir(function(mix) {
 elixir(function(mix) {
     mix.scripts([
         '../vendor/jquery/dist/jquery.js',
-        '../vendor/bootstrap/dist/js/bootstrap.js'
+        '../vendor/bootstrap/dist/js/bootstrap.js',
+        '../vendor/knockout/dist/knockout.js'
     ], 'public/js/vendors.js');
 
     mix.scriptsIn('resources/js', 'public/js/main.js');

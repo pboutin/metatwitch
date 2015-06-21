@@ -2,26 +2,26 @@
 
 @section('content')
     <div class="row">
-        <div class="col-xs-6">
+        <div class="col-xs-6" data-bind="foreach: channels">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-xs-2">
-                            <img src="http://placecage.com/100/100" alt="user" class="img-circle img-responsive">
+                            <img class="img-circle img-responsive" data-bind="attr: { src: channel.logo }" alt="avatar" />
                         </div>
                         <div class="col-xs-7">
-                            <h5>Dalran {{trans('dashboard.playing')}} League of Legends</h5>
-                            <h6>Super title of doom yeah !</h6>
+                            <h5><span data-bind="text: channel.name"></span> {{trans('dashboard.playing')}} League of Legends</h5>
+                            <h6 data-bind="text: channel.status"></h6>
 
                             <div class="row text-center">
                                 <div class="col-xs-4 text-danger">
-                                    <i class="fa fa-user"></i> 34
+                                    <i class="fa fa-user"></i> <span data-bind="text: stream.viewers"
                                 </div>
                                 <div class="col-xs-4">
-                                    <i class="fa fa-eye"></i> 123,000
+                                    <i class="fa fa-eye"></i> <span data-bind="text: stream.channel.views">
                                 </div>
                                 <div class="col-xs-4">
-                                    <i class="fa fa-heart"></i> 1,000
+                                    <i class="fa fa-heart"></i> <span data-bind="text: stream.channel.followers">
                                 </div>
                             </div>
                         </div>
@@ -35,4 +35,7 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        ko.applyBindings(new FollowedViewModel({!! json_encode($followed) !!}));
+    </script>
 @stop
