@@ -8,7 +8,7 @@ use App\Session\TwitchSessionWrapper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class UserHomeController extends Controller
+class UserController extends Controller
 {
     /**
      * Home page

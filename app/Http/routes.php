@@ -33,17 +33,17 @@ $router->group(['middleware' => ['auth']], function() use ($router){
 
     $router->get('/home', [
         'as' => 'home',
-        'uses' => 'UserHomeController@home'
+        'uses' => 'UserController@home'
     ]);
 
     $router->post('/room', [
         'as' => 'gotoRoom',
-        'uses' => 'UserHomeController@gotoRoom'
+        'uses' => 'UserController@gotoRoom'
     ]);
 
     $router->get('/room', [
         'as' => 'room',
-        'uses' => 'UserHomeController@room'
+        'uses' => 'UserController@room'
     ]);
 
 });
