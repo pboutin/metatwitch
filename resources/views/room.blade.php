@@ -14,7 +14,7 @@
                 class="video-stream"
                 width="100%"
                 height="auto"
-                src="http://www.twitch.tv/summit1g/embed"
+                src="http://www.twitch.tv/{{ $channelName }}/embed"
                 frameborder="0">
             </iframe>
         </div>
@@ -22,7 +22,7 @@
             <div class="chat-wrapper">
                 <iframe frameborder="0"
                     scrolling="no"
-                    src="http://www.twitch.tv/{{Auth::user()->username}}/chat"
+                    src="http://www.twitch.tv/{{ Auth::user()->username }}/chat"
                     height="400"
                     width="100%">
                 </iframe>
@@ -30,7 +30,7 @@
             <div class="chat-wrapper">
                 <iframe frameborder="0"
                     scrolling="no"
-                    src="http://www.twitch.tv/summit1g/chat"
+                    src="http://www.twitch.tv/{{ $channelName }}/chat"
                     height="400"
                     width="100%">
                 </iframe>

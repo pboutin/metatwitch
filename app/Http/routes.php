@@ -36,8 +36,14 @@ $router->group(['middleware' => ['auth']], function() use ($router){
         'uses' => 'UserHomeController@home'
     ]);
 
-});
+    $router->post('/room', [
+        'as' => 'gotoRoom',
+        'uses' => 'UserHomeController@gotoRoom'
+    ]);
 
-Route::get('room', function() {
-    return View::make('room');
+    $router->get('/room', [
+        'as' => 'room',
+        'uses' => 'UserHomeController@room'
+    ]);
+
 });

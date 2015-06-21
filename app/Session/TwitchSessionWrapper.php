@@ -8,6 +8,7 @@ class TwitchSessionWrapper
 {
 
     const TWITCH_TOKEN_KEY = 'twitch_token';
+    const TWITCH_CURRENT_STREAM_KEY = 'twitch_current_stream';
 
     public function setTwitchToken($token)
     {
@@ -37,4 +38,18 @@ class TwitchSessionWrapper
         $this->setTwitchToken(null);
     }
 
+    /**
+     * @return string
+     */
+    public function getCurrentTwitchChannel(){
+        return Session::get(self::TWITCH_CURRENT_STREAM_KEY);
+    }
+
+
+    /**
+     * @param $channelName
+     */
+    public function setCurrentTwitchChannel($channelName){
+        Session::put(self::TWITCH_CURRENT_STREAM_KEY, $channelName);
+    }
 }
