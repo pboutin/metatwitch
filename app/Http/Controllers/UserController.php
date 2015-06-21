@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Repositories\UserRepository;
 use App\Session\TwitchSessionWrapper;
+use App\User;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +21,7 @@ class UserController extends Controller
     public function home(UserRepository $userRepository)
     {
         return view('home', [
-            'followed' => $userRepository->getFollowedChannelsFor(Auth::user()->username)
+            'followed' => $userRepository->getFollowedChannelsFor($this->getConnectedUser()->username)
         ]);
     }
 
@@ -33,6 +35,10 @@ class UserController extends Controller
         $channelName = $request->input('channel_name');
         $sessionWrapper->setCurrentTwitchChannel($channelName);
 
+        $user = $this->getConnectedUser();
+        $user->current_channel = $channelName;
+        $user->save();
+
         return route('room');
     }
 
@@ -43,6 +49,25 @@ class UserController extends Controller
     public function room(TwitchSessionWrapper $sessionWrapper)
     {
         return view('room', ['channelName' => $sessionWrapper->getCurrentTwitchChannel()]);
+    }
+
+    /**
+     * Update the user last activity. This route is likely to get pulled by ajax.
+     */
+    public function pingUser()
+    {
+        /** @var User $user */
+        $user = $this->getConnectedUser();
+        $user->updateLastActivity();
+        $user->save();
+    }
+
+    /**
+     * @return User|null
+     */
+    private function getConnectedUser()
+    {
+        return Auth::user();
     }
 
 }

@@ -46,4 +46,9 @@ $router->group(['middleware' => ['auth']], function() use ($router){
         'uses' => 'UserController@room'
     ]);
 
+    $router->get('/ping_user', [
+        'as' => 'pingUser',
+        'uses' => 'UserController@pingUser',
+    ]);
+
 });
