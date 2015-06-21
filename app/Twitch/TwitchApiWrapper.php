@@ -60,13 +60,7 @@ class TwitchApiWrapper
             $channelString[] = $name;
         }
 
-        $filteredStreams = [];
-        $streams = $this->getStreams(implode(',', $channelString));
-
-        dd($streams);
-
-
-        return $filteredStreams;
+        return $this->getStreams(implode(',', $channelString));
     }
 
     /**

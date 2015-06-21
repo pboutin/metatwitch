@@ -77,7 +77,7 @@ class UserRepository
      */
     public function getFollowedChannelsFor($username)
     {
-        return $this->apiWrapper->getUserFollowedStreams($username);
+        return $this->apiWrapper->getUserFollowedStreams($username)->streams;
     }
 
 }
