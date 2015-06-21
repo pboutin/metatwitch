@@ -2,10 +2,26 @@
 
 namespace App\Repositories;
 
+use App\Twitch\TwitchApiWrapper;
 use App\User;
 
 class UserRepository
 {
+    /**
+     * @var TwitchApiWrapper
+     */
+    private $apiWrapper;
+
+    /**
+     * UserRepository constructor.
+     * @param TwitchApiWrapper $apiWrapper
+     */
+    public function __construct(TwitchApiWrapper $apiWrapper)
+    {
+        $this->apiWrapper = $apiWrapper;
+    }
+
+
     /**
      * @param $userData
      * @return User
@@ -53,5 +69,14 @@ class UserRepository
         $user->nickname = $userData->nickname;
 
         return $user->save();
+    }
+
+    /**
+     * @param $username
+     * @return mixed
+     */
+    public function getFollowedChannelsFor($username)
+    {
+        return $this->apiWrapper->getUserFollowedStreams($username);
     }
 }

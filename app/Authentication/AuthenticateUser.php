@@ -3,6 +3,7 @@
 namespace App\Authentication;
 
 use App\Repositories\UserRepository;
+use App\Session\TwitchSessionWrapper;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 use Laravel\Socialite\Contracts\Factory as Socialite;
@@ -17,6 +18,10 @@ class AuthenticateUser
      * @var UserRepository
      */
     private $userRepository;
+    /**
+     * @var TwitchSessionWrapper
+     */
+    private $sessionWrapper;
 
 
     /**
@@ -24,11 +29,13 @@ class AuthenticateUser
      *
      * @param UserRepository $userRepository
      * @param Socialite $socialite
+     * @param TwitchSessionWrapper $sessionWrapper
      */
-    public function __construct(UserRepository $userRepository, Socialite $socialite)
+    public function __construct(UserRepository $userRepository, Socialite $socialite, TwitchSessionWrapper $sessionWrapper)
     {
         $this->socialite = $socialite;
         $this->userRepository = $userRepository;
+        $this->sessionWrapper = $sessionWrapper;
     }
 
     /**
@@ -49,10 +56,9 @@ class AuthenticateUser
 
         $user = $this->userRepository->findOrCreateUserByUsername($twitchUserData);
 
-        session('twitch_token', $twitchUserData->token);
+        $this->sessionWrapper->setTwitchToken($twitchUserData->token);
 
         Auth::login($user, false);
-
 
         return redirect()->route('home');
     }
