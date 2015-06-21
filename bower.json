@@ -1,6 +1,7 @@
 {
   "name": "metatwitch",
   "dependencies": {
-    "materialize": "~0.96.1"
+    "bootstrap": "~3.3.5",
+    "fontawesome": "~4.3.0"
   }
 }
