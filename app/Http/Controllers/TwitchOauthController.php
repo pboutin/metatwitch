@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Authentication\AuthenticateUser;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TwitchOauthController extends Controller
 {
@@ -16,5 +17,14 @@ class TwitchOauthController extends Controller
     public function login(AuthenticateUser $authenticateUser, Request $request)
     {
         return $authenticateUser->execute($request->has('code'));
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('index');
     }
 }

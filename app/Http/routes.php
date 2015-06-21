@@ -24,6 +24,11 @@ $router->get('/login', [
     'uses' => 'TwitchOauthController@login'
 ]);
 
+$router->get('/logout', [
+    'as' => 'logout',
+    'uses' => 'TwitchOauthController@logout'
+]);
+
 $router->group(['middleware' => ['auth']], function() use ($router){
 
     $router->get('/home', [
