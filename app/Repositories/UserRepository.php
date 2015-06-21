@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Twitch\Models\TwitchLiveStream;
 use App\Twitch\TwitchApiWrapper;
 use App\User;
 
@@ -73,11 +74,19 @@ class UserRepository
 
     /**
      * @param $username
-     * @return mixed
+     * @return TwitchLiveStream[]
      */
     public function getFollowedChannelsFor($username)
     {
-        return $this->apiWrapper->getUserFollowedStreams($username)->streams;
+
+        $rawStreams = $this->apiWrapper->getUserFollowedStreams($username);
+
+        $streams = [];
+        foreach($rawStreams->streams as $rawStream){
+            $streams[] = new TwitchLiveStream($rawStream);
+        }
+
+        return $streams;
     }
 
 }
