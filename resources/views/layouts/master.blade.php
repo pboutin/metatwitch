@@ -5,7 +5,7 @@
     </head>
     <body>
         <nav class="navbar navbar-default">
-            <div class="container-fluid">
+            <div class="large-container">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">
                         <img alt="Brand" src="http://placecage.com/75/25">
@@ -25,5 +25,6 @@
         </div>
 
         <script type="text/javascript" src="js/vendors.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
     </body>
 </html>

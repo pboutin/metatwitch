@@ -38,3 +38,36 @@
 @import "../vendor/fontawesome/less/font-awesome.less";
 
 @import 'utils.less';
+
+
+.chat-wrapper::after {
+    content: '';
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background-color: #F2F2F2;
+    top: -60px;
+    left: 46px;
+}
+
+.avatar-wrapper {
+    margin-right: 10px;
+    display: inline-block;
+
+    &::after {
+        content: '';
+        display: block;
+        border-radius: 50%;
+        background-color: @brand-success;
+        width: 20px;
+        height: 20px;
+        position: relative;
+        right: -35px;
+        top: -15px;
+    }
+
+    &.online::after { background-color: @brand-success; }
+    &.away::after { background-color: @brand-warning; }
+    &.offline::after { background-color: @brand-danger; }
+}

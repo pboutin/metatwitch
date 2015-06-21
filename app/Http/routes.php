@@ -38,3 +38,6 @@ $router->group(['middleware' => ['auth']], function() use ($router){
 
 });
 
+Route::get('room', function() {
+    return View::make('room');
+});
