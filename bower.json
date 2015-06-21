@@ -3,6 +3,7 @@
   "dependencies": {
     "bootstrap": "~3.3.5",
     "fontawesome": "~4.3.0",
-    "knockout": "~3.3.0"
+    "knockout": "~3.3.0",
+    "momentjs": "~2.10.3"
   }
 }
