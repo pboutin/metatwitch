@@ -21,4 +21,6 @@ elixir(function(mix) {
         '../vendor/jquery/dist/jquery.js',
         '../vendor/bootstrap/dist/js/bootstrap.js'
     ], 'public/js/vendors.js');
+
+    mix.scriptsIn('resources/js', 'public/js/main.js');
 });
