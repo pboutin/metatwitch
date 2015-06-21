@@ -79,4 +79,13 @@ class UserRepository
     {
         return $this->apiWrapper->getUserFollowedStreams($username);
     }
+
+    /**
+     * @param $username
+     * @return array
+     */
+    public function getFollowedLiveChannelsFor($username)
+    {
+        return $this->apiWrapper->getUserFollowedStreams($username, true);
+    }
 }

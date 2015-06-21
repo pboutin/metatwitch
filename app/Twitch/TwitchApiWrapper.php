@@ -23,9 +23,76 @@ class TwitchApiWrapper
         $this->sessionWrapper = $sessionWrapper;
     }
 
-    public function getUserFollowedStreams($username)
+    /**
+     * @param $username
+     * @param bool|false $filterLive
+     * @return array
+     */
+    public function getUserFollowedStreams($username, $filterLive = false)
     {
-        return $this->curl('/users/' . $username . '/follows/channels');
+
+        $limit = 100;
+        $data = json_decode($this->curl('/users/' . $username . '/follows/channels?limit=' . $limit));
+
+        $totalCount = $data->_total;
+        if($totalCount > $limit){
+
+            $channels = $data->follows;
+
+            $maximumRecursion = ceil($totalCount/$limit);
+
+            for ($increment = 1; $increment <= $maximumRecursion; $increment++) {
+                $offset = $limit * $increment;
+                $data = json_decode(
+                    $this->curl('/users/' . $username . '/follows/channels?limit=' . $limit . '&offset=' . $offset)
+                );
+
+                $channels = array_merge($channels, $data->follows);
+            }
+
+        }else{
+            $channels = $data->follows;
+        }
+
+        $filteredChannels = [];
+
+        foreach($channels as $channel){
+
+            $name = $channel->channel->name;
+            $channelStreamData = $this->getChannelStream($name);
+
+            $isChannelStreaming = $this->isChannelStreaming($channelStreamData);
+
+            if($isChannelStreaming){
+                $channel->stream = $channelStreamData->stream;
+            }
+
+
+            if($filterLive){
+                if($isChannelStreaming){
+                    $filteredChannels[] = $channel;
+                }
+            }else{
+                $filteredChannels[] = $channel;
+            }
+        }
+
+        return $filteredChannels;
+    }
+
+    public function getChannelStream($channel_name)
+    {
+       return json_decode($this->curl('/streams/' . $channel_name ));
+    }
+
+    public function isChannelStreaming($channelSteamData)
+    {
+        $is_live = false;
+        if(!is_null($channelSteamData->stream)){
+            $is_live = true;
+        }
+
+        return $is_live;
     }
 
     private function curl($url)
