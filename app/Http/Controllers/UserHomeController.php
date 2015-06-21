@@ -14,7 +14,7 @@ class UserHomeController extends Controller
      */
     public function home()
     {
-        dd(Auth::user());
+        return view('dashboard');
     }
 
 }

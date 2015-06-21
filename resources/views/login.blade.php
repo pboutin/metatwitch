@@ -10,7 +10,7 @@
         <source src="video/djerocku.mp4" type="video/mp4">
     </video>
     <h1>{{trans('login.heading')}}</h1>
-    <a href="/dashboard" class="btn btn-primary btn-login">
+    <a href="{{ url('login') }}" class="btn btn-primary btn-login">
         <i class="fa fa-twitch"></i> {{trans('login.cta')}}
     </a>
 </body>

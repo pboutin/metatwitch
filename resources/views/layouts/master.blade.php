@@ -14,7 +14,7 @@
                 <div class="navbar-right">
                     <ul class="nav navbar-nav">
                         <li class="navbar-text">Dalran</li>
-                        <li><a href="/login"><i class="fa fa-sign-out"></i> {{trans('master.logout')}}</a></li>
+                        <li><a href="{{ url('logout') }}"><i class="fa fa-sign-out"></i> {{trans('master.logout')}}</a></li>
                     </ul>
                 </div>
             </div>
