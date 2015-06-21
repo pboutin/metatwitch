@@ -12,14 +12,18 @@ class UserRepository
      */
     public function findOrCreateUserByUsername($userData)
     {
-        $user = User::firstOrCreate([
-            'username' => $userData->name,
-            'email' => $userData->email,
-            'bio' => $userData->user['bio'],
-            'logo' => $userData->user['logo'],
-            'nickname' => $userData->nickname,
-            'twitch_id' => $userData->id,
-        ]);
+        $user = $this->getUserByUsername($userData->name);
+
+        if(is_null($user)){
+            $user = User::create([
+                'username' => $userData->name,
+                'email' => $userData->email,
+                'bio' => $userData->user['bio'],
+                'logo' => $userData->user['logo'],
+                'nickname' => $userData->nickname,
+                'twitch_id' => $userData->id,
+            ]);
+        }
 
         $this->syncUserEditableProperties($user, $userData);
 

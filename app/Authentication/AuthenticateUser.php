@@ -49,7 +49,10 @@ class AuthenticateUser
 
         $user = $this->userRepository->findOrCreateUserByUsername($twitchUserData);
 
+        session('twitch_token', $twitchUserData->token);
+
         Auth::login($user, false);
+
 
         return redirect()->route('home');
     }
