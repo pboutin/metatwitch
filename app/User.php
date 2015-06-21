@@ -17,6 +17,8 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
  * @property string $nickname
  * @property int    $twitch_id
  * @property string $logo
+ * @property string last_activity
+ * @property string current_channel
  */
 class User extends Model implements AuthenticatableContract
 {
@@ -34,6 +36,24 @@ class User extends Model implements AuthenticatableContract
      *
      * @var array
      */
-    protected $fillable = ['username', 'email', 'twitch_id', 'bio', 'nickname', 'logo'];
+    protected $fillable = [
+        'username',
+        'email',
+        'twitch_id',
+        'bio',
+        'nickname',
+        'logo',
+        'last_activity',
+        'current_channel'
+    ];
 
+
+    /**
+     * Set a new last activity date in the model
+     */
+    public function updateLastActivity()
+    {
+        $date = date('Y-m-d H:i:s');
+        $this->last_activity = $date;
+    }
 }
