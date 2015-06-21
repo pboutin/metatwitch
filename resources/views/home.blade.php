@@ -21,9 +21,12 @@
                             </p>
                         </div>
                         <div class="col-xs-4">
-                            <button class="btn btn-primary pull-right">
-                                <i class="fa fa-video-camera"></i> {{trans('dashboard.watch')}}
-                            </button>
+                            <form action="room" method="post">
+                                <input type="hidden" name="channel_name" data-bind="attr: { value: channelName }"/>
+                                <button type="submit" class="btn btn-primary pull-right">
+                                    <i class="fa fa-video-camera"></i> {{trans('dashboard.watch')}}
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
