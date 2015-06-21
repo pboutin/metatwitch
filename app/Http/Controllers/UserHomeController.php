@@ -16,8 +16,9 @@ class UserHomeController extends Controller
      */
     public function home(UserRepository $userRepository)
     {
-        $user = Auth::user();
-        return view('dashboard', ['streams' => $userRepository->getFollowedChannelsFor($user->username)]);
+        return view('home', [
+            'followed' => $userRepository->getFollowedLiveChannelsFor(Auth::user()->username)
+        ]);
     }
 
 }
