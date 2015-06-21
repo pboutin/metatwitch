@@ -89,4 +89,24 @@ class UserRepository
         return $streams;
     }
 
+    /**
+     * @param User $user
+     * @return mixed
+     */
+    public function getUsersWatchingConnectedUserStream(User $user)
+    {
+        $users = array();
+
+        if(!is_null($user->current_channel))
+        {
+            $users = User::where('current_channel', '=', $user->current_channel)
+                ->where('username', '!=', $user->username)
+                ->orderBy('last_activity', 'desc')
+                ->get()
+                ->toArray();
+        }
+
+        return $users;
+    }
+
 }
