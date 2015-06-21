@@ -25,10 +25,9 @@ class TwitchApiWrapper
 
     /**
      * @param $username
-     * @param bool|false $filterLive
      * @return array
      */
-    public function getUserFollowedStreams($username, $filterLive = false)
+    public function getUserFollowedStreams($username)
     {
 
         $limit = 100;
@@ -54,37 +53,43 @@ class TwitchApiWrapper
             $channels = $data->follows;
         }
 
-        $filteredChannels = [];
+        $channelString = [];
 
         foreach($channels as $channel){
-
             $name = $channel->channel->name;
-            $channelStreamData = $this->getChannelStream($name);
-
-            $isChannelStreaming = $this->isChannelStreaming($channelStreamData);
-
-            if($isChannelStreaming){
-                $channel->stream = $channelStreamData->stream;
-            }
-
-
-            if($filterLive){
-                if($isChannelStreaming){
-                    $filteredChannels[] = $channel;
-                }
-            }else{
-                $filteredChannels[] = $channel;
-            }
+            $channelString[] = $name;
         }
 
-        return $filteredChannels;
+        $filteredStreams = [];
+        $streams = $this->getStreams(implode(',', $channelString));
+
+        dd($streams);
+
+
+        return $filteredStreams;
     }
 
-    public function getChannelStream($channel_name)
+    /**
+     * @param $streamString
+     * @return mixed
+     */
+    public function getStreams($streamString){
+        return json_decode($this->curl('/streams?channel=' . $streamString . '&limit=100' ));
+    }
+
+    /**
+     * @param $channelName
+     * @return mixed
+     */
+    public function getChannelStream($channelName)
     {
-       return json_decode($this->curl('/streams/' . $channel_name ));
+       return json_decode($this->curl('/streams/' . $channelName ));
     }
 
+    /**
+     * @param $channelSteamData
+     * @return bool
+     */
     public function isChannelStreaming($channelSteamData)
     {
         $is_live = false;
@@ -95,6 +100,10 @@ class TwitchApiWrapper
         return $is_live;
     }
 
+    /**
+     * @param $url
+     * @return mixed
+     */
     private function curl($url)
     {
         $curl = curl_init();
