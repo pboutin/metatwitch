@@ -39,7 +39,7 @@ class UserController extends Controller
         $user->current_channel = $channelName;
         $user->save();
 
-        return route('room');
+        return redirect()->route('room');
     }
 
     /**
